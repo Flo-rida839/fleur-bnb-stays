@@ -6,6 +6,12 @@ import { Sparkles, Zap, Shield, Wifi, Thermometer, Coffee, Music, Tv, Lock, Batt
 const ParallaxSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [particles, setParticles] = useState<Array<{
+    left: string;
+    top: string;
+    duration: number;
+    delay: number;
+  }> | null>(null);
 
   const smartFeatures = [
     { icon: Zap, label: 'Smart Lighting', description: 'Voice-controlled ambiance' },
@@ -18,6 +24,17 @@ const ParallaxSection = () => {
     { icon: Lock, label: 'Digital Access', description: 'Phone-based check-in' },
     { icon: Battery, label: 'Backup Power', description: 'Uninterrupted experience' },
   ];
+
+  useEffect(() => {
+    // Generate random particles only on client side
+    const generatedParticles = Array.from({ length: 20 }, () => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      duration: Math.random() * 3 + 3, // 3-6 seconds
+      delay: Math.random() * 2, // 0-2 seconds
+    }));
+    setParticles(generatedParticles);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,24 +80,24 @@ const ParallaxSection = () => {
           }}
         />
         
-        {/* Animated Particles */}
+        {/* Animated Particles - Only render on client */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+          {particles && particles.map((particle, i) => (
             <div
               key={i}
               className="absolute w-1 h-1 bg-gold-light rounded-full opacity-30"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 2}s`,
+                left: particle.left,
+                top: particle.top,
+                animation: `float ${particle.duration}s ease-in-out infinite`,
+                animationDelay: `${particle.delay}s`,
               }}
             />
           ))}
         </div>
       </div>
 
-      {/* Content Container */}
+      {/* Rest of your component remains the same */}
       <div className="relative container mx-auto px-4 h-full flex items-center py-20">
         <div className="max-w-6xl mx-auto w-full">
           {/* Header */}

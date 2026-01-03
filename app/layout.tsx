@@ -31,7 +31,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#006f75" />
       </head>
-      <body className={`${inter.className} bg-ivory`}>
+      <body 
+        className={`${inter.className} bg-ivory`}
+        suppressHydrationWarning={true}
+      >
         <Navbar />
         <main className="min-h-screen">
           {children}
