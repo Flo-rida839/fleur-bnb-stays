@@ -38,7 +38,7 @@ const UnitCard = ({ unit }: UnitCardProps) => {
     '3BR': 'bg-orange-100 text-orange-800',
   };
 
-  const amenitiesIcons = {
+  const amenitiesIcons: Record<string, React.ReactNode> = {
     'wifi': <Wifi className="w-5 h-5" />,
     'netflix': <Tv className="w-5 h-5" />,
     'kitchen': <Coffee className="w-5 h-5" />,
