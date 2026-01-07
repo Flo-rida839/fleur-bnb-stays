@@ -55,7 +55,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl">
             Experience{' '}
             <span className="font-cursive text-gold italic">
               Unforgettable
@@ -63,20 +63,20 @@ const Hero = () => {
             Stays
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-xl leading-relaxed font-light">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/95 mb-10 max-w-xl leading-relaxed font-light">
             Discover premium vacation rentals with stunning views, luxury amenities, 
             and personalized service that redefines comfort.
           </p>
 
           {/* Features */}
-          <div className="flex flex-wrap gap-4 mb-8">
+          <div className="flex flex-wrap gap-3 sm:gap-4 mb-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2"
+                className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2"
               >
-                <feature.icon className="w-5 h-5 text-gold" />
-                <span className="text-white font-medium">{feature.text}</span>
+                <feature.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+                <span className="text-white text-sm sm:text-base font-medium">{feature.text}</span>
               </div>
             ))}
           </div>
@@ -85,14 +85,14 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               href="/booking"
-              className="group bg-gradient-to-r from-gold to-gold-dark text-white px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center space-x-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 hover-lift"
+              className="group bg-gradient-to-r from-gold to-gold-dark text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center space-x-2 hover:shadow-2xl transition-all duration-300 hover:scale-105 hover-lift"
             >
               <span>Book Your Luxury Stay</span>
               <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
             <Link
               href="/units"
-              className="group bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center space-x-2 hover:bg-white/30 transition-all duration-300 hover-lift"
+              className="group bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold flex items-center justify-center space-x-2 hover:bg-white/30 transition-all duration-300 hover-lift"
             >
               <span>Explore Our Units</span>
             </Link>

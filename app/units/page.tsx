@@ -137,28 +137,28 @@ export default function UnitsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white py-20">
+      <div className="bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white py-12 sm:py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-serif mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif mb-6">
               Discover Our <span className="font-cursive text-gold">Luxury</span> Collection
             </h1>
-            <p className="text-xl text-teal-100 mb-8">
+            <p className="text-lg sm:text-xl text-teal-100 mb-8">
               Choose from our curated selection of premium vacation rentals, 
               each offering unique experiences and world-class amenities.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-5 h-5 text-gold" />
-                <span>8+ Locations</span>
+            <div className="flex flex-wrap gap-4 sm:gap-6">
+              <div className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+                <span className="text-sm sm:text-base">8+ Locations</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Users className="w-5 h-5 text-gold" />
-                <span>2-8 Guests</span>
+              <div className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                <Users className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+                <span className="text-sm sm:text-base">2-8 Guests</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Bed className="w-5 h-5 text-gold" />
-                <span>Studio to 4BR</span>
+              <div className="flex items-center space-x-2 bg-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                <Bed className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
+                <span className="text-sm sm:text-base">Studio to 4BR</span>
               </div>
             </div>
           </div>
@@ -167,59 +167,59 @@ export default function UnitsPage() {
 
       {/* Filters */}
       <div className="container mx-auto px-4 -mt-8">
-        <div className="bg-white rounded-2xl shadow-xl p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-serif text-teal-900">
+        <div className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+            <h2 className="text-xl sm:text-2xl font-serif text-teal-900">
               <Filter className="w-6 h-6 inline mr-2" />
               Refine Your Search
             </h2>
-            <div className="text-teal-700 font-semibold">
+            <div className="text-teal-700 font-semibold bg-teal-50 px-4 py-1 rounded-full text-sm">
               {allUnits.length} Units Available
             </div>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-4">
-            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none w-full">
               <option>All Locations</option>
               <option>Nairobi</option>
               <option>Coast</option>
               <option>Mountains</option>
             </select>
-            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none">
+            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none w-full">
               <option>All Unit Types</option>
               <option>Studio</option>
               <option>1 Bedroom</option>
               <option>2 Bedrooms</option>
               <option>3+ Bedrooms</option>
             </select>
-            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none">
+            <select className="p-3 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none w-full">
               <option>Any Price</option>
               <option>Under KES 10,000</option>
               <option>KES 10,000 - 20,000</option>
               <option>KES 20,000+</option>
             </select>
-            <button className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-3 rounded-xl font-semibold hover:shadow-lg transition-all">
+            <button className="bg-gradient-to-r from-teal-600 to-teal-700 text-white p-3 rounded-xl font-semibold hover:shadow-lg transition-all w-full">
               Apply Filters
             </button>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-teal-100">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-teal-800">8</div>
-              <div className="text-sm text-gray-600">Total Units</div>
+            <div className="text-center p-2">
+              <div className="text-xl sm:text-2xl font-bold text-teal-800">8</div>
+              <div className="text-xs sm:text-sm text-gray-600">Total Units</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-teal-800">4.8</div>
-              <div className="text-sm text-gray-600">Avg Rating</div>
+            <div className="text-center p-2">
+              <div className="text-xl sm:text-2xl font-bold text-teal-800">4.8</div>
+              <div className="text-xs sm:text-sm text-gray-600">Avg Rating</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-teal-800">6</div>
-              <div className="text-sm text-gray-600">Locations</div>
+            <div className="text-center p-2">
+              <div className="text-xl sm:text-2xl font-bold text-teal-800">6</div>
+              <div className="text-xs sm:text-sm text-gray-600">Locations</div>
             </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-teal-800">24</div>
-              <div className="text-sm text-gray-600">Max Guests</div>
+            <div className="text-center p-2">
+              <div className="text-xl sm:text-2xl font-bold text-teal-800">24</div>
+              <div className="text-xs sm:text-sm text-gray-600">Max Guests</div>
             </div>
           </div>
         </div>

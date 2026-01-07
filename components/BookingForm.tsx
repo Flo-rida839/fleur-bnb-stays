@@ -173,16 +173,16 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Unit Info */}
           {unitTitle && (
-            <div className="bg-gradient-to-r from-teal-50 to-gold/5 rounded-2xl p-6">
-              <h3 className="text-2xl font-serif text-teal-900 mb-2">
+            <div className="bg-gradient-to-r from-teal-50 to-gold/5 rounded-2xl p-4 sm:p-6">
+              <h3 className="text-xl sm:text-2xl font-serif text-teal-900 mb-2">
                 {unitTitle}
               </h3>
-              <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-teal-800">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="text-2xl sm:text-3xl font-bold text-teal-800">
                   KES {unitPrice.toLocaleString()}
-                  <span className="text-lg font-normal text-gray-600"> / night</span>
+                  <span className="text-base sm:text-lg font-normal text-gray-600"> / night</span>
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-xs sm:text-sm text-gray-600">
                   Minimum stay: 2 nights
                 </div>
               </div>
@@ -190,7 +190,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
           )}
 
           {/* Date Selection */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="flex items-center text-sm font-semibold text-teal-800">
                 <Calendar className="w-4 h-4 mr-2" />
@@ -202,7 +202,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
                 value={formData.checkIn}
                 onChange={handleChange}
                 min={new Date().toISOString().split('T')[0]}
-                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all"
+                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all text-sm sm:text-base"
                 required
               />
             </div>
@@ -217,7 +217,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
                 value={formData.checkOut}
                 onChange={handleChange}
                 min={formData.checkIn || new Date().toISOString().split('T')[0]}
-                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all"
+                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all text-sm sm:text-base"
                 required
               />
             </div>
@@ -244,7 +244,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
           </div>
 
           {/* Personal Info */}
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-teal-800">
                 Full Name
@@ -255,7 +255,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Enter your full name"
-                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all"
+                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all text-sm sm:text-base"
                 required
               />
             </div>
@@ -269,7 +269,7 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
-                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all"
+                className="w-full p-4 border-2 border-teal-100 rounded-xl focus:border-teal-500 focus:ring-2 focus:ring-teal-200 outline-none transition-all text-sm sm:text-base"
                 required
               />
             </div>

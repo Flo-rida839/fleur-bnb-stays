@@ -172,24 +172,24 @@ export default function Home() {
 
           {/* Stats */}
           <div className="bg-gradient-to-r from-teal-800 to-teal-900 rounded-3xl p-8 text-white">
-            <div className="grid md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-4xl font-bold mb-2">500+</div>
-                <div className="text-teal-200">Happy Guests</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold mb-2">4.9★</div>
-                <div className="text-teal-200">Average Rating</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold mb-2">15</div>
-                <div className="text-teal-200">Premium Units</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold mb-2">24/7</div>
-                <div className="text-teal-200">Guest Support</div>
-              </div>
+          <div className="grid md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-teal-700/30">
+            <div className="py-6 md:py-0">
+              <div className="text-4xl font-bold mb-2">500+</div>
+              <div className="text-teal-200">Happy Guests</div>
             </div>
+            <div className="py-6 md:py-0">
+              <div className="text-4xl font-bold mb-2">4.9★</div>
+              <div className="text-teal-200">Average Rating</div>
+            </div>
+            <div className="py-6 md:py-0">
+              <div className="text-4xl font-bold mb-2">15</div>
+              <div className="text-teal-200">Premium Units</div>
+            </div>
+            <div className="py-6 md:py-0">
+              <div className="text-4xl font-bold mb-2">24/7</div>
+              <div className="text-teal-200">Guest Support</div>
+            </div>
+          </div>
           </div>
         </div>
       </section>
