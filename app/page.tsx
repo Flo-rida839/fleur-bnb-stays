@@ -106,23 +106,22 @@ export default function Home() {
       <Hero />
       
       {/* Featured Units Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-teal-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-teal-100 to-gold/20 rounded-full px-6 py-2 mb-4">
-              <Sparkles className="w-5 h-5 text-gold" />
-              <span className="font-semibold text-teal-800">Premium Selection</span>
+      <section className="py-24 bg-gradient-to-b from-white via-teal-50/30 to-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center space-x-2 bg-teal-50 border border-teal-100 rounded-full px-6 py-2 mb-6 shadow-sm">
+              <Sparkles className="w-5 h-5 text-gold animate-pulse" />
+              <span className="text-sm font-bold uppercase tracking-widest text-teal-800">Curated Collection</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-serif text-teal-900 mb-4">
-              Featured <span className="font-cursive text-gold">Luxury</span> Units
+            <h2 className="text-5xl md:text-6xl font-serif text-teal-900 mb-6 leading-tight">
+              Our <span className="font-cursive text-gold italic">Exclusive</span> Retreats
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover our handpicked selection of premium vacation rentals, 
-              each offering unique experiences and luxury amenities.
+            <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
+              Hand-selected properties offering the pinnacle of comfort and sophistication.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mb-16">
             {featuredUnits.map((unit) => (
               <UnitCard key={unit.id} unit={unit} />
             ))}

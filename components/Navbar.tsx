@@ -29,23 +29,22 @@ const Navbar = () => {
     <>
       <nav className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? 'glass-effect py-3 shadow-lg' 
-          : 'bg-transparent py-5'
+          ? 'glass-effect py-2 shadow-xl border-b border-teal-100/50' 
+          : 'bg-transparent py-6'
       }`}>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-600 to-gold rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">F</span>
+            <Link href="/" className="flex items-center space-x-3 group">
+              <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-gold rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:rotate-12">
+                <span className="text-white font-bold text-2xl">F</span>
               </div>
               <div>
-                <h1 className="text-2xl font-cursive font-bold text-teal-800">
-                  Fleur Stays BNB
+                <h1 className="text-3xl font-cursive font-bold text-teal-900 group-hover:text-gold transition-colors">
+                  Fleur Stays
                 </h1>
-                <p className="text-xs text-teal-600 flex items-center">
-                  <MapPin className="w-3 h-3 mr-1" />
-                  Luxury Vacation Rentals
+                <p className={`text-xs uppercase tracking-widest font-bold transition-colors ${scrolled ? 'text-teal-600' : 'text-teal-200'}`}>
+                  Luxury Estates
                 </p>
               </div>
             </Link>

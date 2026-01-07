@@ -55,15 +55,15 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-serif text-white mb-4 leading-tight">
+          <h1 className="text-5xl md:text-8xl font-serif text-white mb-6 leading-tight drop-shadow-2xl">
             Experience{' '}
-            <span className="font-cursive text-gold bg-gradient-to-r from-teal-600 via-gold to-teal-600 bg-clip-text text-transparent animate-shimmer">
+            <span className="font-cursive text-gold italic">
               Unforgettable
             </span>{' '}
             Stays
           </h1>
 
-          <p className="text-xl text-white/90 mb-8 max-w-lg">
+          <p className="text-xl md:text-2xl text-white/95 mb-10 max-w-xl leading-relaxed font-light">
             Discover premium vacation rentals with stunning views, luxury amenities, 
             and personalized service that redefines comfort.
           </p>
