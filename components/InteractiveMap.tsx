@@ -45,7 +45,7 @@ const InteractiveMap = () => {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Map Visualization */}
-        <div className="relative h-96 bg-gradient-to-br from-teal-50 to-ivory rounded-xl p-4 border border-teal-200 shadow-inner">
+        <div className="relative h-64 sm:h-80 md:h-96 bg-gradient-to-br from-teal-50 to-ivory rounded-xl p-4 border border-teal-200 shadow-inner overflow-hidden">
           {/* Grid Background */}
           <div className="absolute inset-0 bg-grid-teal-500/[0.03] bg-[size:40px_40px]" />
           

@@ -137,32 +137,32 @@ const AmenitiesGrid = () => {
     : amenities.filter(item => item.category === activeCategory);
 
   return (
-    <div className="py-16 bg-gradient-to-b from-white to-teal-50">
-      <div className="container mx-auto px-4">
+    <div className="py-16 sm:py-24 bg-gradient-to-b from-white to-teal-50">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 sm:mb-20">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-teal-100 to-gold/20 rounded-full px-6 py-2 mb-4">
             <Sparkles className="w-5 h-5 text-gold" />
             <span className="font-semibold text-teal-800">Premium Features</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif text-teal-900 mb-4">
-            Luxury <span className="font-cursive text-gold">Amenities</span> Included
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-teal-900 mb-4">
+            Luxury <span className="font-cursive text-gold italic">Amenities</span> Included
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-500 max-w-2xl mx-auto font-light">
             Every Fleur Stays property comes with premium amenities designed for your comfort and convenience
           </p>
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg'
-                  : 'bg-white text-teal-700 hover:bg-teal-50 hover:shadow-md'
+                  : 'bg-white text-teal-700 hover:bg-teal-50 hover:shadow-md border border-teal-100'
               }`}
             >
               {category.label}
@@ -171,7 +171,7 @@ const AmenitiesGrid = () => {
         </div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAmenities.map((amenity, index) => (
             <div
               key={index}
