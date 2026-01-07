@@ -8,10 +8,10 @@ const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   
   const heroImages = [
-    '/images/hero1.jpg',
-    '/images/hero2.jpg',
-    '/images/hero3.jpg',
-    '/images/hero4.jpg',
+    'https://images.pexels.com/photos/3915857/pexels-photo-3915857.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    'https://images.pexels.com/photos/3571459/pexels-photo-3571459.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    'https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    'https://images.pexels.com/photos/3457881/pexels-photo-3457881.jpeg?auto=compress&cs=tinysrgb&w=1600',
   ];
 
   const features = [

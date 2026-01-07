@@ -67,7 +67,7 @@ const ParallaxSection = () => {
         ref={sectionRef}
         className="absolute inset-0 bg-cover bg-fixed bg-center"
         style={{
-          backgroundImage: 'linear-gradient(rgba(0, 60, 64, 0.85), rgba(0, 95, 100, 0.8)), url(/images/parallax-bg.jpg)',
+          backgroundImage: 'linear-gradient(rgba(0, 60, 64, 0.85), rgba(0, 95, 100, 0.8)), url(https://images.pexels.com/photos/3803517/pexels-photo-3803517.jpeg?auto=compress&cs=tinysrgb&w=1600)',
           backgroundBlendMode: 'overlay',
         }}
       >
