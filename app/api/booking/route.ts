@@ -1,93 +1,94 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const {
-      checkIn,
-      checkOut,
-      guests,
-      fullName,
-      email,
-      phone,
-      specialRequests,
-      paymentMethod,
-      unitId,
-      totalPrice,
-    } = body;
-
-    // Validate required fields
-    if (!checkIn || !checkOut || !fullName || !email || !phone) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
-    }
-
-    // Generate booking reference
-    const bookingRef = `FLR-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const formData = await request.json();
     
-    // Generate smart lock code (encrypted in production)
-    const smartLockCode = Math.floor(100000 + Math.random() * 900000).toString();
-
-    // Save booking to Supabase
+    // Generate booking reference
+    const bookingReference = `FLR-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
+    
+    // Insert booking into Supabase
     const { data, error } = await supabase
       .from('bookings')
       .insert([
         {
-          booking_reference: bookingRef,
-          check_in: checkIn,
-          check_out: checkOut,
-          guests,
-          full_name: fullName,
-          email,
-          phone,
-          special_requests: specialRequests,
-          payment_method: paymentMethod,
-          unit_id: unitId,
-          total_price: totalPrice,
-          status: 'confirmed',
-          smart_lock_code: smartLockCode,
+          booking_reference: bookingReference,
+          unit_id: formData.unitId,
+          check_in: formData.checkIn,
+          check_out: formData.checkOut,
+          guests: formData.guests,
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          special_requests: formData.specialRequests,
+          payment_method: formData.paymentMethod,
+          total_price: formData.totalPrice,
+          status: 'pending_payment', // Initial status
           created_at: new Date().toISOString(),
         },
       ])
-      .select();
+      .select()
+      .single();
 
     if (error) {
-      console.error('❌ Supabase error:', error);
+      console.error('Supabase error:', error);
       return NextResponse.json(
-        { error: 'Database error: ' + error.message },
+        { error: 'Failed to save booking', details: error.message },
         { status: 500 }
       );
     }
 
-    const booking = data[0];
+    // If payment method is M-Pesa, initiate payment
+    if (formData.paymentMethod === 'mpesa') {
+      try {
+        const mpesaResponse = await fetch(`${request.nextUrl.origin}/api/mpesa/stk-push`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phoneNumber: formData.phone.replace(/\D/g, '').slice(-9), // Last 9 digits
+            amount: formData.totalPrice,
+            bookingReference: bookingReference,
+            accountReference: `BOOKING-${bookingReference}`,
+          }),
+        });
+
+        const mpesaResult = await mpesaResponse.json();
+        
+        if (mpesaResult.success) {
+          // Update booking with payment request ID
+          await supabase
+            .from('bookings')
+            .update({ 
+              payment_request_id: mpesaResult.checkoutRequestID,
+              status: 'payment_pending'
+            })
+            .eq('booking_reference', bookingReference);
+        }
+      } catch (mpesaError) {
+        console.error('M-Pesa initiation error:', mpesaError);
+        // Continue anyway - booking is saved, payment can be retried
+      }
+    }
 
     return NextResponse.json({
       success: true,
-      booking_reference: booking.booking_reference,
-      smart_lock_code: smartLockCode,
-      message: 'Booking created successfully in Supabase!',
-      data: booking,
-    }, { status: 201 });
+      booking_reference: bookingReference,
+      data: data,
+      message: 'Booking created successfully'
+    });
 
   } catch (error) {
-    console.error('❌ Booking API error:', error);
+    console.error('Booking error:', error);
     return NextResponse.json(
-      { error: 'Failed to process booking' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
-}
-
-export async function GET(request: NextRequest) {
-  return NextResponse.json({
-    message: 'Fleur Stays BNB Booking API',
-    status: 'Connected to Supabase',
-    endpoints: {
-      POST: '/api/booking - Create a new booking',
-    },
-    note: 'Make sure SUPABASE_URL and SUPABASE_KEY are set in .env.local',
-  });
 }

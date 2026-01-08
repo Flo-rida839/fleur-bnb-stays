@@ -63,11 +63,35 @@ const PaymentMethods = ({ selectedMethod, onSelectMethod }: PaymentMethodsProps)
     },
   ];
 
-  const handleMpesaPayment = () => {
-    if (mpesaNumber && mpesaNumber.length === 9) {
-      alert(`Payment request sent to 254${mpesaNumber}. Please check your phone to complete payment.`);
+  const handleMpesaPayment = async () => {
+  if (mpesaNumber && mpesaNumber.length === 9) {
+    try {
+      // You'll need to get the total amount from parent component
+      // For now, we'll use a placeholder
+      const response = await fetch('/api/mpesa/stk-push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phoneNumber: mpesaNumber,
+          amount: 1, // Replace with actual amount from BookingForm
+          bookingReference: 'TEMP-' + Date.now(),
+          accountReference: 'Test Payment',
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(`Payment request ${result.simulated ? '(simulated) ' : ''}sent to 254${mpesaNumber}. ${result.message}`);
+      } else {
+        alert(`Failed to send payment request: ${result.error}`);
+      }
+    } catch (error) {
+      console.error('M-Pesa error:', error);
+      alert('Failed to initiate payment. Please try again.');
     }
-  };
+  }
+};
 
   return (
     <div className="space-y-6">
