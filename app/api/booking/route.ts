@@ -59,8 +59,16 @@ export async function POST(request: NextRequest) {
           }),
         });
 
-        const mpesaResult = await mpesaResponse.json();
-        console.log('M-Pesa payment request sent:', mpesaResult);
+        // Use .text() first to handle non-JSON responses gracefully
+        const mpesaResultText = await mpesaResponse.text();
+        console.log('M-Pesa payment response raw:', mpesaResultText);
+        
+        try {
+          const mpesaResult = JSON.parse(mpesaResultText);
+          console.log('M-Pesa payment request sent:', mpesaResult);
+        } catch (e) {
+          console.error('M-Pesa API did not return valid JSON:', mpesaResultText);
+        }
       } catch (mpesaError) {
         console.error('M-Pesa initiation error:', mpesaError);
       }

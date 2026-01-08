@@ -58,7 +58,10 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
         }),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(err => {
+        console.error('Failed to parse response as JSON:', err);
+        return { error: 'Server returned an invalid response. Please check your connection and try again.' };
+      });
       
       if (response.ok) {
         console.log('✅ Booking saved to Supabase:', result);
