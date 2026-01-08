@@ -48,32 +48,21 @@ export async function POST(request: NextRequest) {
     // If payment method is M-Pesa, initiate payment
     if (formData.paymentMethod === 'mpesa') {
       try {
-        const mpesaResponse = await fetch(`${request.nextUrl.origin}/api/mpesa/stk-push`, {
+        const phone = formData.phone.replace(/\D/g, '');
+        const formattedPhone = phone.startsWith('0') ? '254' + phone.slice(1) : phone;
+        
+        const mpesaResponse = await fetch(`https://modcom2.pythonanywhere.com/api/mpesa_payment`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            phoneNumber: formData.phone.replace(/\D/g, '').slice(-9), // Last 9 digits
-            amount: formData.totalPrice,
-            bookingReference: bookingReference,
-            accountReference: `BOOKING-${bookingReference}`,
+            phone: formattedPhone
           }),
         });
 
         const mpesaResult = await mpesaResponse.json();
-        
-        if (mpesaResult.success) {
-          // Update booking with payment request ID
-          await supabase
-            .from('bookings')
-            .update({ 
-              payment_request_id: mpesaResult.checkoutRequestID,
-              status: 'payment_pending'
-            })
-            .eq('booking_reference', bookingReference);
-        }
+        console.log('M-Pesa payment request sent:', mpesaResult);
       } catch (mpesaError) {
         console.error('M-Pesa initiation error:', mpesaError);
-        // Continue anyway - booking is saved, payment can be retried
       }
     }
 
