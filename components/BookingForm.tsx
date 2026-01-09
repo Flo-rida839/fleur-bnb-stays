@@ -64,9 +64,14 @@ const BookingForm = ({ unitId, unitTitle, unitPrice = 15000 }: BookingFormProps)
       });
       
       if (response.ok) {
-        console.log('✅ Booking saved to Supabase:', result);
+        // Success handling...
         setBookingReference(result.booking_reference || result.data?.booking_reference || 'FLR-XXXXXX');
         setIsSuccess(true);
+        
+        // M-Pesa Specific Alert
+        if (formData.paymentMethod === 'mpesa') {
+          alert('M-Pesa STK Push initiated. Please check your phone to complete the payment.');
+        }
         
         // Reset form after success (after 10 seconds)
         setTimeout(() => {

@@ -63,35 +63,13 @@ const PaymentMethods = ({ selectedMethod, onSelectMethod }: PaymentMethodsProps)
     },
   ];
 
-  const handleMpesaPayment = async () => {
-  if (mpesaNumber && mpesaNumber.length === 9) {
-    try {
-      // You'll need to get the total amount from parent component
-      // For now, we'll use a placeholder
-      const response = await fetch('/api/mpesa/stk-push', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          phoneNumber: mpesaNumber,
-          amount: 1, // Replace with actual amount from BookingForm
-          bookingReference: 'TEMP-' + Date.now(),
-          accountReference: 'Test Payment',
-        }),
-      });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        alert(`Payment request ${result.simulated ? '(simulated) ' : ''}sent to 254${mpesaNumber}. ${result.message}`);
-      } else {
-        alert(`Failed to send payment request: ${result.error}`);
-      }
-    } catch (error) {
-      console.error('M-Pesa error:', error);
-      alert('Failed to initiate payment. Please try again.');
+  const handleMpesaPayment = () => {
+    // We remove the direct STK push call here because it's now handled 
+    // by the main BookingForm.tsx when the form is submitted.
+    if (mpesaNumber && mpesaNumber.length === 9) {
+      onSelectMethod('mpesa');
     }
-  }
-};
+  };
 
   return (
     <div className="space-y-6">
